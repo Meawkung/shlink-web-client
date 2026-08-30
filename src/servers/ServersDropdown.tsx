@@ -21,7 +21,7 @@ export const ServersDropdown: FC = () => {
     >
       {serversList.length === 0 ? (
         <Dropdown.Item to="/server/create">
-          <FontAwesomeIcon icon={plusIcon} /> Add a server
+          <FontAwesomeIcon icon={plusIcon} /> เพิ่มเซิร์ฟเวอร์
         </Dropdown.Item>
       ) : (
         <>
@@ -32,7 +32,7 @@ export const ServersDropdown: FC = () => {
           ))}
           <Dropdown.Separator />
           <Dropdown.Item to="/manage-servers">
-            <FontAwesomeIcon icon={serverIcon} /> Manage servers
+            <FontAwesomeIcon icon={serverIcon} /> จัดการเซิร์ฟเวอร์
           </Dropdown.Item>
         </>
       )}

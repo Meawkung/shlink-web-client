@@ -5,7 +5,7 @@ import {
   ShlinkWebComponent,
 } from '@shlinkio/shlink-web-component';
 import type { FC } from 'react';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import type { ShlinkApiClientBuilder } from '../api/services/ShlinkApiClientBuilder';
 import { withDependencies } from '../container/context';
 import { isReachableServer } from '../servers/data';
@@ -21,14 +21,29 @@ export type ShlinkWebComponentContainerProps = {
 };
 
 const ShlinkWebComponentContainerBase: FC<ShlinkWebComponentContainerProps> =
-  // FIXME Using `memo` here to solve a flickering effect in charts.
-  //       memo is probably not the right solution. The root cause is the withSelectedServer HOC, but I couldn't fix the
-  //       extra rendering there.
-  //       This should be revisited at some point.
   withSelectedServer(
     memo(({ buildShlinkApiClient, TagColorsStorage: tagColorsStorage }) => {
       const { selectedServer } = useSelectedServer();
       const { settings } = useSettings();
+
+      const effectiveSettings = useMemo(() => {
+        if (isReachableServer(selectedServer)) {
+          const defaultTag = (selectedServer as any).defaultTag;
+          if (defaultTag) {
+            const currentDefaultTags = settings?.shortUrlCreation?.defaultTags;
+            if (!currentDefaultTags || currentDefaultTags.length === 0) {
+              return {
+                ...settings,
+                shortUrlCreation: {
+                  ...settings?.shortUrlCreation,
+                  defaultTags: [defaultTag],
+                },
+              };
+            }
+          }
+        }
+        return settings;
+      }, [selectedServer, settings]);
 
       if (!isReachableServer(selectedServer)) {
         return <ServerError />;
@@ -41,7 +56,7 @@ const ShlinkWebComponentContainerBase: FC<ShlinkWebComponentContainerProps> =
           <ShlinkWebComponent
             serverVersion={selectedServer.version}
             apiClient={buildShlinkApiClient(selectedServer)}
-            settings={settings}
+            settings={effectiveSettings}
             routesPrefix={routesPrefix}
             tagColorsStorage={tagColorsStorage}
             createNotFound={(nonPrefixedHomePath: string) => (

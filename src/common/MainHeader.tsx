@@ -25,7 +25,7 @@ export const MainHeader: FC = () => {
         active={pathname.startsWith(settingsPath)}
         className="flex items-center gap-1.5"
       >
-        <FontAwesomeIcon icon={cogsIcon} /> Settings
+        <FontAwesomeIcon icon={cogsIcon} /> ตั้งค่า
       </NavBar.MenuItem>
       <ServersDropdown />
     </NavBar>

@@ -25,7 +25,7 @@ export const DeleteServerModal: FC<DeleteServerModalProps> = ({ server, onClose,
   return (
     <CardModal
       open={open}
-      title="Remove server"
+      title="ลบเซิร์ฟเวอร์"
       variant="danger"
       onClose={() => onClose(false)}
       onConfirm={() => onClose(true)}
@@ -34,7 +34,7 @@ export const DeleteServerModal: FC<DeleteServerModalProps> = ({ server, onClose,
     >
       <div className="flex flex-col gap-y-4">
         <p>
-          Are you sure you want to remove <b>{server ? server.name : ''}</b>?
+          คุณแน่ใจหรือไม่ว่าต้องการลบเซิร์ฟเวอร์ <b>{server ? server.name : ''}</b>?
         </p>
         <p>
           <i>

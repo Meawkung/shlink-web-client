@@ -37,22 +37,22 @@ export const Home: FC = withoutSelectedServer(() => {
 
           <div className="md:border-l border-lm-border dark:border-dm-border flex-grow">
             <h1 className={clsx('p-4 text-center border-lm-border dark:border-dm-border', { 'border-b': !hasServers })}>
-              Welcome!
+              ยินดีต้อนรับ!
             </h1>
             {hasServers ? (
               <ServersListGroup servers={serversList} />
             ) : (
               <div className="p-6 text-center flex flex-col gap-12 text-xl">
-                <p>This application will help you manage your Shlink servers.</p>
+                <p>ระบบจัดการลิงก์ย่อ Shlink Web Dashboard</p>
                 <p>
                   <Button to="/server/create" size="lg" inline>
-                    <FontAwesomeIcon icon={faPlus} widthAuto /> Add a server
+                    <FontAwesomeIcon icon={faPlus} widthAuto /> เพิ่มเซิร์ฟเวอร์
                   </Button>
                 </p>
                 <p>
                   <ExternalLink href="https://shlink.io/documentation">
                     <small>
-                      <span className="mr-2">Learn more about Shlink</span>
+                      <span className="mr-2">เรียนรู้เพิ่มเติมเกี่ยวกับ Shlink</span>
                       <FontAwesomeIcon icon={faExternalLinkAlt} />
                     </small>
                   </ExternalLink>

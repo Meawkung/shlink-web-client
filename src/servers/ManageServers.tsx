@@ -58,13 +58,13 @@ const ManageServersBase: FC<ManageServersProps> = withoutSelectedServer(
               <Table.Row>
                 {hasAutoConnect && (
                   <Table.Cell className="w-[35px]">
-                    <span className="sr-only">Auto-connect</span>
+                    <span className="sr-only">เชื่อมต่ออัตโนมัติ</span>
                   </Table.Cell>
                 )}
-                <Table.Cell>Name</Table.Cell>
-                <Table.Cell>Base URL</Table.Cell>
+                <Table.Cell>ชื่อเซิร์ฟเวอร์</Table.Cell>
+                <Table.Cell>URL เซิร์ฟเวอร์</Table.Cell>
                 <Table.Cell>
-                  <span className="sr-only">Options</span>
+                  <span className="sr-only">ตัวเลือก</span>
                 </Table.Cell>
               </Table.Row>
             }

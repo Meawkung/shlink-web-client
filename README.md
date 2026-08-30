@@ -1,24 +1,39 @@
-# shlink-web-client
+# Shlink Web Client (Thai Edition 🇹🇭)
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/shlinkio/shlink-web-client/ci.yml?branch=develop&logo=github&style=flat-square)](https://github.com/shlinkio/shlink-web-client/actions/workflows/ci.yml?query=workflow%3A%22Continuous+integration%22)
-[![Code Coverage](https://img.shields.io/codecov/c/gh/shlinkio/shlink-web-client/develop?style=flat-square)](https://app.codecov.io/gh/shlinkio/shlink-web-client)
-[![GitHub release](https://img.shields.io/github/release/shlinkio/shlink-web-client.svg?style=flat-square)](https://github.com/shlinkio/shlink-web-client/releases/latest)
-[![Docker pulls](https://img.shields.io/docker/pulls/shlinkio/shlink-web-client.svg?logo=docker&style=flat-square)](https://hub.docker.com/r/shlinkio/shlink-web-client/)
-[![GitHub license](https://img.shields.io/github/license/shlinkio/shlink-web-client.svg?style=flat-square)](https://github.com/shlinkio/shlink-web-client/blob/main/LICENSE)
+> A customized, fully Thai-localized fork of [Shlink Web Client](https://github.com/shlinkio/shlink-web-client) by [@Meawkung](https://github.com/Meawkung), featuring **Cloudflare Access Zero Trust Auto-Login** and **Automatic Author Tagging**.
 
-[![Mastodon](https://img.shields.io/mastodon/follow/109329425426175098?color=%236364ff&domain=https%3A%2F%2Ffosstodon.org&label=follow&logo=mastodon&logoColor=white&style=flat-square)](https://fosstodon.org/@shlinkio)
-[![Bluesky](https://img.shields.io/badge/follow-shlinkio-0285FF.svg?style=flat-square&logo=bluesky&logoColor=white)](https://bsky.app/profile/shlink.io)
-[![Paypal Donate](https://img.shields.io/badge/Donate-paypal-blue.svg?style=flat-square&logo=paypal&colorA=cccccc)](https://slnk.to/donate)
+---
 
-A ReactJS-based progressive web application for [Shlink](https://shlink.io).
+## ✨ Features in this Custom Fork
 
-![shlink-web-client](shlink-web-client.gif)
+1. **🇹🇭 100% Thai Localization (ภาษาไทยเต็มรูปแบบ)**
+   - แปลเมนู ปุ่ม ตาราง กราฟสถิติ ฟอร์มสร้างลิงก์ และหน้าการตั้งค่าทั้งหมดเป็นภาษาไทย
 
-> If you are trying to find out how to run the project in development mode or how to provide contributions, read the [CONTRIBUTING](CONTRIBUTING.md) doc.
+2. **🔐 Cloudflare Access Email Auto-Login (Zero-Touch Auth)**
+   - เชื่อมต่อกับ Cloudflare Zero Trust เพื่ออ่าน Header `Cf-Access-Authenticated-User-Email`
+   - แจกจ่าย Server Connection และ Scoped API Key ประจำตัวของผู้ใช้ตามอีเมลโดยอัตโนมัติ ไม่ต้องกรอก API Key เองบนอุปกรณ์ใหม่
 
-## Installation
+3. **🏷️ Locked Default Author Tagging (ระบบล็อคแท็กผู้สร้าง)**
+   - ดึงชื่อด้านหน้าของ Email (ก่อน `@`) มาเป็น Default Tag ของลิงก์ย่อให้อัตโนมัติ
+   - ล็อคแท็กผู้สร้างไว้ถาวร ป้องกันการเผลอลบ เพื่อความแม่นยำในการแยกแยะและ Audit ลิงก์ของ Admin
 
-There are three ways in which you can use this application.
+4. **🐳 Optimized Unprivileged Dockerfile**
+   - มาพร้อม `Dockerfile.thai` ที่ Build บน `nginx-unprivileged:alpine` ปลอดภัยและเบา
+
+---
+
+## 🚀 Quick Deployment with Docker
+
+```bash
+# 1. Build the customized Thai Web Client image
+docker build -f Dockerfile.thai -t shlink-web-client:thai .
+
+# 2. Run with Docker Compose or Docker Run
+docker run -d \
+  --name shlink-web-client \
+  -p 8080:8080 \
+  shlink-web-client:thai
+```
 
 ### From app.shlink.io
 

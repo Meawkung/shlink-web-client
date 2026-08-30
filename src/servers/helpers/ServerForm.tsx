@@ -30,19 +30,19 @@ export const ServerForm: FC<ServerFormProps> = ({ onSubmit, initialValues, child
   return (
     <form name="serverForm" onSubmit={handleSubmit}>
       <SimpleCard className="mb-4" bodyClassName="flex flex-col gap-y-3" title={title}>
-        <LabelledInput label="Name" value={name} onChange={(e) => setName(e.target.value)} required />
-        <LabelledInput label="URL" type="url" value={url} onChange={(e) => setUrl(e.target.value)} required />
+        <LabelledInput label="ชื่อเซิร์ฟเวอร์" value={name} onChange={(e) => setName(e.target.value)} required />
+        <LabelledInput label="URL ของเซิร์ฟเวอร์" type="url" value={url} onChange={(e) => setUrl(e.target.value)} required />
         <LabelledRevealablePasswordInput
-          label="API key"
+          label="API Key"
           value={apiKey}
           onChange={(e) => setApiKey(e.target.value)}
           required
         />
-        <Details summary="Advanced options">
+        <Details summary="ตัวเลือกขั้นสูง">
           <div className="flex flex-col gap-0.5">
             <Label className="flex items-center gap-x-1.5 cursor-pointer">
               <Checkbox onChange={toggleForwardCredentials} checked={forwardCredentials} />
-              Forward credentials to this server on every request.
+              ส่งข้อมูลยืนยันตัวตน (Credentials/Cookies) ไปยังเซิร์ฟเวอร์ทุกคำขอ
             </Label>
             <small className="pl-5.5 text-gray-600 dark:text-gray-400 mt-0.5">
               {'"'}Credentials{'"'} here means cookies, TLS client certificates, or authentication headers containing a

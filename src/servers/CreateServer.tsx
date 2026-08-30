@@ -66,7 +66,7 @@ const CreateServerBase: FC<CreateServerProps> = withoutSelectedServer(({ useTime
 
   return (
     <NoMenuLayout>
-      <ServerForm title="Add new server" onSubmit={onSubmit}>
+      <ServerForm title="เพิ่มเซิร์ฟเวอร์ใหม่" onSubmit={onSubmit}>
         {!hasServers && (
           <ImportServersBtn tooltipPlacement="top" onImport={setServersImported} onError={setErrorImporting} />
         )}
@@ -75,7 +75,7 @@ const CreateServerBase: FC<CreateServerProps> = withoutSelectedServer(({ useTime
             Cancel
           </Button>
         )}
-        <Button type="submit">Create server</Button>
+        <Button type="submit">บันทึกเซิร์ฟเวอร์</Button>
       </ServerForm>
 
       {serversImported && <ImportResult variant="success" />}

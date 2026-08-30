@@ -1,3 +1,4 @@
+import path from 'node:path';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { playwright } from '@vitest/browser-playwright';
@@ -9,6 +10,15 @@ import pack from './package.json' with { type: 'json' };
 const homepage = pack.homepage?.trim();
 
 export default defineConfig({
+  resolve: {
+    dedupe: ['react', 'react-dom', 'react-router', 'react-redux', '@reduxjs/toolkit'],
+    alias: {
+      react: path.resolve(__dirname, 'node_modules/react'),
+      'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+      'react-router': path.resolve(__dirname, 'node_modules/react-router'),
+      'react-redux': path.resolve(__dirname, 'node_modules/react-redux'),
+    },
+  },
   plugins: [
     react(),
     tailwindcss(),
